@@ -54,6 +54,3 @@ remove toDel node@(BinaryNode ckey value left right)
 mostLeft :: (Ord k) => BinaryTree k v -> BinaryTree k v
 mostLeft node@(BinaryNode _ _ EmptyTree _) = node
 mostLeft (BinaryNode _ _ left _) = mostLeft left
-
-names :: [(Int, String)]
-names = [(1, "Tomek"), (8, "Filip"), (4, "Bartosz"), (2, "Michal"), (16, "Ewa"), (12, "Krzysiek"), (32, "Agata")]
