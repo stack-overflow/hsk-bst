@@ -37,7 +37,7 @@ search a (BinaryNode key value left right)
 contains :: (Ord k) => k -> BinaryTree k v -> Bool
 contains a root = case search a root of
                        Nothing   -> False
-                       Just das  -> True
+                       Just _    -> True
 
 --- Remove element with a given key from the tree.
 remove :: (Ord k) => k -> BinaryTree k v -> BinaryTree k v
