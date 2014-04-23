@@ -25,7 +25,7 @@ insert newKey newValue (BinaryNode key value left right)
 fromList :: (Ord k) => [(k, v)] -> BinaryTree k v
 fromList = foldl (\acc curr -> insert (fst curr) (snd curr) acc) EmptyTree
 
---- Search for given key.
+--- Search for a given key.
 search :: (Ord k) => k -> BinaryTree k v -> Maybe v
 search a EmptyTree = Nothing
 search a (BinaryNode key value left right)
@@ -39,7 +39,7 @@ contains a root = case search a root of
                        Nothing   -> False
                        Just das  -> True
 
---- Remove element with given key from the tree.
+--- Remove element with a given key from the tree.
 remove :: (Ord k) => k -> BinaryTree k v -> BinaryTree k v
 remove toDel EmptyTree = EmptyTree
 remove toDel node@(BinaryNode ckey value left right)
@@ -54,3 +54,8 @@ remove toDel node@(BinaryNode ckey value left right)
 mostLeft :: (Ord k) => BinaryTree k v -> BinaryTree k v
 mostLeft node@(BinaryNode _ _ EmptyTree _) = node
 mostLeft (BinaryNode _ _ left _) = mostLeft left
+
+--- Let BinaryTree k be a functor, as it holds values.
+instance Functor (BinaryTree k) where
+  fmap f EmptyTree = EmptyTree
+  fmap f (BinaryNode key val left right) = BinaryNode key (f val) (fmap f left) (fmap f right)
